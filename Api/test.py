@@ -17,12 +17,14 @@ url_base = 'http://localhost:8000/'
 # URL Final.
 url_base += func + '/'
 # Si se desea obtener una muestra, de cuantos elementos. 0 para no obtener.
-rand = 200 # --------------------------------------------------------------------------------------------------||
+rand = 2 # --------------------------------------------------------------------------------------------------||
 # Verificamos si se quiere una muestra.
 if rand:
     # Tomamos la muestra de un Series de la lista elementos y lo volvemos a convertir en lista.
     elementos = pd.Series(elementos).sample(n=rand)
     elementos = elementos.to_list()
+    # Agrego elementos de distintos tipos.
+    elementos += ['134', 'gsaj', "['34', '54']", '5.5', 'True', 'None', '']
 # Iterar sobre cada elemento y enviar una solicitud GET a la URL correspondiente.
 for elemento in elementos:
     # URL + elemento a buscar.
