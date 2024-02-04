@@ -59,7 +59,14 @@ En proceso...<br><br>
     - [imgs](imgs/) - Contiene las imágenes usadas en el proyecto.
     - [Notebooks](Notebooks/) - Contiene cada notebook usado en el proyecto, con su respectivo nombre indicando su función y el set de datos al que fue destinada su creación. Queries.ipynb trata todos los datos para las funciones.
     - **Otros** - Repositorios necesarios para git y github como este readme.
-4. **MVP:**<br>
-![mvp](imgs/mvp.png)
 
-
+### Instrucciones de instalación y uso<br>
+![instalacion](imgs/Instalar.png)
+1. **Clona el repositorio:** Utiliza el comando `git clone https://github.com/Aeregon-Sharks/Steam-ML-Ops.git` para descargar el repositorio en la carpeta que decidas ejecutar la consola de git.<br>
+2. **Descarga los requerimientos:** Ejecuta `pip install -r requirements.txt` en el directorio principal en el que pusiste el proyecto, o en tu ambiente virtual.
+3. **Ejecuta los notebook ETL:** Los notebook se encuentran en la carpeta [Notebooks](Notebooks/) , corre todas las celdas de los notebook que tengan en su nombre ETL, esto hará que empiece la limpieza de los sets de datos, que si no están en tu dispositivo, se deberían descargar automáticamente, si esto no ocurre y algún Notebook da un error, intenta descargarlos manualmente y ponerlos en la carpeta Data/, con el nombre referenciado en el notebook, por defecto los nombres serán: `steam_games.json.gz , user_reviews.json.gz y users_items.json.gz`.
+4. **Ejecuta el notebook Queries:** En la misma carpeta, ejecuta todas las celdas del Notebook Queries, recuerda que para todos los notebooks, hay información en ellos sobre los criterios para cada decisión que modificó a los datos, no dudes en consultarme si algo falla y no se encuentra ninguna indicación en el notebook.
+5. **Ejecuta el notebook de EDA:** En la carpeta Machine Learning se encuentra todo lo relacionado a la segunda parte del proyecto, ahí podrás ejecutar el cuaderno para visualizar el Análisis de Datos Exploratorio.
+6. **Ejecuta el notebook de Machine Learning** En la misma carpeta, ejecuta el notebook de MachineLearning.
+7. **Ejecuta main.py:** Una vez se terminen de ejecutar todos los notebooks, ejecuta el archivo [main.py](Api/main.py) que se encuentra en la carpeta [Api](Api/) para empezar el programa.
+8. **Pruebas:** Ejecuta pruebas a las solicitudes ya sea localmente con programas como postman, o usando el archivo [test.py](Api/test.py) ubicado en la misma carpeta de la API.

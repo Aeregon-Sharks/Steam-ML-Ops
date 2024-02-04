@@ -10,14 +10,14 @@ elementos = pd.read_csv('Data/Processed/Query_output/developer.csv') # ---------
 col = 'developer' # --------------------------------------------------------------------------------------------||
 # Función que se usará en la URL.
 func = 'developer' # -------------------------------------------------------------------------------------------||
+# Si se desea obtener una muestra, de cuantos elementos. 0 para no obtener.
+rand = 2 # -----------------------------------------------------------------------------------------------------||
 # Elementos únicos en la columna objetivo.
 elementos = elementos[col].unique()
 # URL base a la que se enviarán las solicitudes.
 url_base = 'http://localhost:8000/'
 # URL Final.
 url_base += func + '/'
-# Si se desea obtener una muestra, de cuantos elementos. 0 para no obtener.
-rand = 2 # --------------------------------------------------------------------------------------------------||
 # Verificamos si se quiere una muestra.
 if rand:
     # Tomamos la muestra de un Series de la lista elementos y lo volvemos a convertir en lista.
