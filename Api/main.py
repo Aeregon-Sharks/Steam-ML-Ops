@@ -95,8 +95,3 @@ async def get_developer_reviews_analysis(dev: str):
     # Atrapamos cualquier otra Excepción y mostramos un código 500 para error interno junto con el error.
     except Exception as e:
         raise HTTPException(status_code=500, detail=f'Error en el servidor: {e}')
-# Verificamos si el archivo se está ejecutando directamente y, en ese caso, iniciamos el servidor utilizando Uvicorn.
-if __name__ == "__main__":
-    # Importamos uvicorn para ejecutar nuestro script asíncrono.
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
