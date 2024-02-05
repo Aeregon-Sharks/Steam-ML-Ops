@@ -60,7 +60,7 @@ def developer(dev: str):
     # Volvemos la cadena minúscula para facilitar su búsqueda en el dataframe.
     dev = dev.lower()
     # Cargo el data frame procesado previamente para esta función.
-    df = pd.read_csv('Api/ApiData/developer.csv')
+    df = pd.read_csv('ApiData/developer.csv')
     # Extraemos los desarrolladores, para no hacer todo el trabajo con un data frame vacío en caso de que no esté el desarrollador en el dataframe de juegos.
     devs = df['developer'].unique()
     # Si no se encuentra al desarrollador, sugiere algunos similares. Consulte la función sugerencia para más información.
@@ -94,7 +94,7 @@ def userdata(user_id: str):
     returns: {'Usuario':'user_id', 'Dinero gastado': float, '% de recomendación': 'XX.XX %', 'cantidad de items': int}
     '''
     # Cargo el data frame procesado previamente para esta función.
-    df = pd.read_csv('Api/ApiData/user_data.csv')
+    df = pd.read_csv('ApiData/user_data.csv')
     # Verificamos que el usuario se encuentre en la lista, cargando los id de los usuarios y buscándolo, si no se encuentra, se da una sugerencia de búsqueda.
     # Consulte la función sugerencia para más información.
     users = df['id_user'].unique()
@@ -130,7 +130,7 @@ def UserForGenre(gender: str):
     # Volvemos la cadena minúscula para facilitar su búsqueda en el dataframe.
     gender = gender.lower()
     # Cargo el Dataframe que contiene los usuarios con más horas para cada género.
-    df_top = pd.read_csv('Api/ApiData/user_for_genre_tops.csv')
+    df_top = pd.read_csv('ApiData/user_for_genre_tops.csv')
     # Primero verificamos que se haya ingresado un género que exista en el dataframe, si no, se hace una sugerencia de los posibles géneros.
     # Consulte la función sugerencia para más información.
     genres = df_top['genres'].unique()
@@ -142,7 +142,7 @@ def UserForGenre(gender: str):
     del df_top
     # Ahora buscamos las horas que tiene dicho usuario por año.
     # Cargo el Dataframe que contiene las horas por año para cada género de cada usuario.
-    df_year = pd.read_csv('Api/ApiData/user_for_genre_year.csv', dtype={'year':'int'})
+    df_year = pd.read_csv('ApiData/user_for_genre_year.csv', dtype={'year':'int'})
     # Filtramos por el usuario y género que nos interesa, solo usaremos la columna año y tiempo de juego para cada año.
     df_year = df_year[(df_year['user_id'] == top_user) & (df_year['genres'] == gender)][['year', 'playtime_forever']]
     # Creamos la llave del diccionario que retornaremos.
@@ -178,7 +178,7 @@ def best_developer_year(year: int):
     returns: [{"Puesto 1" : 'dev1'}, {"Puesto 2" : 'dev2'},{"Puesto 3" : 'dev3'}]
     '''
     # Cargamos el set de datos previamente procesado para esta tarea.
-    df = pd.read_csv('Api/ApiData/best_developer_year.csv')
+    df = pd.read_csv('ApiData/best_developer_year.csv')
     # Cargamos los años disponibles.
     years = df['year'].unique()
     # Verificamos que se haya ingresado un año válido, de no ser así se muestran los años disponibles.
@@ -215,7 +215,7 @@ def developer_reviews_analysis(dev: str):
     # Volvemos la cadena minúscula para facilitar su búsqueda en el dataframe.
     dev = dev.lower()
     # Cargamos el set de datos previamente procesado para esta tarea.
-    df = pd.read_csv('Api/ApiData/developer_reviews_analysis.csv')
+    df = pd.read_csv('ApiData/developer_reviews_analysis.csv')
     # Extraemos los desarrolladores, para no hacer todo el trabajo con un data frame vacío en caso de que no esté el desarrollador en el dataframe de juegos.
     devs = df['developer'].unique()
     # Si no se encuentra al desarrollador, sugiere algunos similares. Consulte la función sugerencia para más información.
