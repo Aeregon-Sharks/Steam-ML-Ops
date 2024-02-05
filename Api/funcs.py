@@ -129,32 +129,29 @@ def UserForGenre(gender: str):
     '''
     # Volvemos la cadena minúscula para facilitar su búsqueda en el dataframe.
     gender = gender.lower()
-    # Cargo el Dataframe que contiene los usuarios con más horas para cada género.
-    df_top = pd.read_csv('ApiData/user_for_genre_tops.csv')
+    # Cargo el data frame procesado previamente para esta función.
+    df_year = pd.read_csv('ApiData/user_for_genre.csv', dtype={'year':int})
     # Primero verificamos que se haya ingresado un género que exista en el dataframe, si no, se hace una sugerencia de los posibles géneros.
     # Consulte la función sugerencia para más información.
-    genres = df_top['genres'].unique()
+    genres = df_year['genres'].unique()
     if not (gender in genres):
         return sugerencia(gender, genres)
-    # Si no se retornó una sugerencia, es porque hay un género valido, buscamos ese género y extraemos al usuario.
-    top_user = df_top[df_top['genres'] == gender]['user_id'].iloc[0]
-    # Mientras continuamos eliminamos el df de top de usuarios para no saturar a la API.
-    del df_top
-    # Ahora buscamos las horas que tiene dicho usuario por año.
-    # Cargo el Dataframe que contiene las horas por año para cada género de cada usuario.
-    df_year = pd.read_csv('ApiData/user_for_genre_year.csv', dtype={'year':'int'})
     # Filtramos por el usuario y género que nos interesa, solo usaremos la columna año y tiempo de juego para cada año.
-    df_year = df_year[(df_year['user_id'] == top_user) & (df_year['genres'] == gender)][['year', 'playtime_forever']]
+    df_year = df_year[df_year['genres'] == gender][['user_id', 'year', 'playtime_forever_x']]
     # Creamos la llave del diccionario que retornaremos.
     key = "Usuario con más horas jugadas para Género " + gender
-    # Creamos un pivote para crear el formato de salida.
-    pivot = pd.pivot_table(df_year, values='playtime_forever', index=None, columns='year', aggfunc='sum')
-    # Volvemos un diccionario el pivote para iterar sobre él fácilmente.
-    pivot = pivot.to_dict(orient='list')
-    # Por último creamos el diccionario final que tendrá cada año y hora en una lista.
-    pivot = [{"Año": year, "Horas": horas[0]} for year, horas in pivot.items()]
-    # Retornamos el resultado combinado.
-    return {key: top_user, "Horas jugadas": pivot}
+    # Extraemos el usuario.
+    user = df_year['user_id'].iloc[0]
+    # Creamos la lista que contendrá los diccionarios con cada año y duración.
+    horas = []
+    # Iteramos en el dataframe.
+    for i, row in df_year.iterrows():
+        # Creamos el diccionario con el año y las horas correspondientes.
+        diccionario = {'año': row['year'], 'horas': row['playtime_forever_x']}
+        # Agregamos el diccionario a la lista.
+        horas.append(diccionario)
+    # Retornamos la llave, con el usuario con más horas, con la segunda llave, con la lista de horas en cada año.
+    return {key:user, "Horas jugadas":horas}
 
 def best_developer_year(year: int):
     '''
