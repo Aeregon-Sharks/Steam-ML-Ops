@@ -79,7 +79,7 @@ en el directorio principal en el que pusiste el proyecto, o en tu ambiente virtu
 4. **Ejecuta el notebook Queries:** En la misma carpeta, ejecuta todas las celdas del Notebook Queries, recuerda que para todos los notebooks, hay información en ellos sobre los criterios para cada decisión que modificó a los datos, no dudes en consultarme si algo falla y no se encuentra ninguna indicación en el notebook.<br><br>
 5. **Ejecuta el notebook de EDA:** En la carpeta Machine Learning se encuentra todo lo relacionado a la segunda parte del proyecto, ahí podrás ejecutar el cuaderno para visualizar el Análisis de Datos Exploratorio.
 6. **Ejecuta el notebook de Machine Learning** En la misma carpeta, ejecuta el notebook de MachineLearning.<br><br>
-7. **Ejecuta main.py:** Una vez se terminen de ejecutar todos los notebooks, ejecuta el archivo [main.py](Api/main.py) que se encuentra en la carpeta [Api](Api/) usando uvicorn, con el comando.
+7. **Ejecuta main.py:** Una vez se terminen de ejecutar todos los notebooks, ejecuta el archivo [main.py](Api/main.py) que se encuentra en la carpeta [Api](Api/) usando uvicorn, y ubicado desde la carpeta Api, no desde la raíz.
 ```
 uvicorn Api.main:app
 ```

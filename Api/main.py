@@ -1,8 +1,10 @@
 # Importamos fastAPI para gestionar solicitudes HTTP.
 from fastapi import FastAPI, HTTPException
 # Importamos las funciones necesarias para la API.
-from funcs import developer, userdata, UserForGenre, best_developer_year, developer_reviews_analysis
-
+try: # Verificamos que la ubicación desde la que se ejecutó sea la correcta, si no, usamos la del directorio raíz.
+    from funcs import developer, userdata, UserForGenre, best_developer_year, developer_reviews_analysis
+except ModuleNotFoundError:
+    from Api.funcs import developer, userdata, UserForGenre, best_developer_year, developer_reviews_analysis
 # Creamos una instancia de FastAPI.
 app = FastAPI()
 # Creamos las solicitudes correspondientes a cada endpoint.
