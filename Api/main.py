@@ -99,7 +99,7 @@ async def get_developer_reviews_analysis(dev: str):
         raise HTTPException(status_code=500, detail=f'Error en el servidor: {e}')
     
 @app.get("/recomendacion_juego/{id}")
-async def get_developer_reviews_analysis(id: int):
+async def get_recomendacion_juego(id: int):
     try:
         # Recibimos la respuesta de la función. 
         elm = recomendacion_juego(id)
