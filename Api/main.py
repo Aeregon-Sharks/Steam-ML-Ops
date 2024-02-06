@@ -2,9 +2,9 @@
 from fastapi import FastAPI, HTTPException
 # Importamos las funciones necesarias para la API.
 try: # Verificamos que la ubicación desde la que se ejecutó sea la correcta, si no, usamos la del directorio raíz.
-    from funcs import developer, userdata, UserForGenre, best_developer_year, developer_reviews_analysis
+    from funcs import developer, userdata, UserForGenre, best_developer_year, developer_reviews_analysis, recomendacion_juego
 except ModuleNotFoundError:
-    from Api.funcs import developer, userdata, UserForGenre, best_developer_year, developer_reviews_analysis
+    from Api.funcs import developer, userdata, UserForGenre, best_developer_year, developer_reviews_analysis, recomendacion_juego
 # Creamos una instancia de FastAPI.
 app = FastAPI()
 # Creamos las solicitudes correspondientes a cada endpoint.
@@ -85,6 +85,24 @@ async def get_developer_reviews_analysis(dev: str):
     try:
         # Recibimos la respuesta de la función. 
         elm = developer_reviews_analysis(dev)
+        # Si la respuesta fue un string, es porque no hubo coincidencias y se usó la función sugerencia().
+        if type(elm) == str:
+            # Retornamos un 404, no se encontró, y la sugerencia en los detalles.
+            raise HTTPException(status_code=404, detail=elm)
+        # Si no hubo Excepción, se retorna el elemento de la respuesta de la función.
+        return elm
+    # Atrapamos la excepción HTTP anterior en caso de que sea necesario.
+    except HTTPException:
+        raise
+    # Atrapamos cualquier otra Excepción y mostramos un código 500 para error interno junto con el error.
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f'Error en el servidor: {e}')
+    
+@app.get("/recomendacion_juego/{id}")
+async def get_developer_reviews_analysis(id: int):
+    try:
+        # Recibimos la respuesta de la función. 
+        elm = recomendacion_juego(id)
         # Si la respuesta fue un string, es porque no hubo coincidencias y se usó la función sugerencia().
         if type(elm) == str:
             # Retornamos un 404, no se encontró, y la sugerencia en los detalles.

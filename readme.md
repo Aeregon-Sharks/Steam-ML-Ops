@@ -2,17 +2,17 @@
 
 ---
 # Proyecto Machine Learning Operations Steam
-### Introducción
+## Introducción
 Bienvenidos a mi proyecto de Machine Learning Operations, mi nombre es Juan Camilo Acevedo y me encantó realizar cada parte de él y aprender mucho en el proceso, este es mi primer proyecto haciendo lo que más me gusta, con datos de una de mis actividades favoritas. Gracias por tu interés y tomarte tu tiempo en explorarlo. Documenté cada parte para que sea sencillo entender lo que se realiza en él.
-### Indice
+## Indice
 [Descripción](#descripción) - [Objetivo](#objetivo) - [Tareas desarrolladas](#tareas-desarrolladas) - [Estructura del proyecto](#estructura-del-proyecto) - [Instrucciones de instalación y uso](#instrucciones-de-instalación-y-uso)
 ### Descripción
 El proyecto presente es una parte de la etapa LABS del Bootcamp para Ciencia de Datos de SoyHenry, donde utilizo todos los conocimientos adquiridos a lo largo de todas las etapas del Bootcamp para llevar a cabo el rol de un MLOps Engineer de Steam, abordando desde la Extracción, Transformación y Carga (ETL) de los datos, hasta la implementación de un sistema de recomendación de video juegos para usuarios en la plataforma Steam.
 
-### Objetivo
-El objetivo del proyecto es tener un MVP de una API funcional alojada en un servicio lista para consumir. Dicha API debe cumplir las funciones propuestas más adelante en las tareas desarrolladas y debe implementar también un algoritmo de recomendación de videojuegos.
+## Objetivo
+El objetivo del proyecto es tener un MVP de una API funcional alojada en un servicio lista para consumir. Dicha API debe cumplir las funciones propuestas más adelante en las tareas desarrolladas y debe implementar también un algoritmo de recomendación de videojuegos, el cual, en base a un id de un juego, o de un id de un usuario, recomiende otro similar al juego ingresado, o que le pueda gustar al usuario, esto se debe implementar en la API al igual que las funciones descritas más adelante.
 
-### Tareas desarrolladas
+## Tareas desarrolladas
 ![proceso](assets/Proceso.png)
 1. **Data Engineering**
     
@@ -44,7 +44,7 @@ El objetivo del proyecto es tener un MVP de una API funcional alojada en un serv
         Debe retornar: `{'dev':{'Negative':'count', 'Positive':'count'}}`<br><br>
     - **API:** Se realizaron los respectivos endpoints en el archivo [main.py](Api/main.py), el cual en base a las URL retorna el respectivo resultado, manejando errores desde no encontrar un elemento hasta fallos en el servidor o el programa.<br><br>
     - **Pruebas:** Usando *Postman*, verifiqué los posibles escenarios en los que una solicitud podía causar respuestas inesperadas, una vez corregidos esos errores, cree un script de pruebas, llamado [test.py](test.py) el cual puede realizar solicitudes en base a las posibles búsquedas, para más información consultar el script.<br><br>
-    - **Deployment:** Se usó Render junto a git y github para el despliegue del proyecto, en este punto la aplicación está lista para ser usada con todo lo mencionado, y a partir de este despliegue, se irá modificando para completar el objetivo del proyecto, los siguientes pasos serán el EDA para lograr entender mejor los datos y crear el algoritmo de recomendación.
+    - **Deployment:** Se usó Render junto a git y github para el despliegue del proyecto, en este punto la aplicación está lista para ser usada con todo lo mencionado, y a partir de este despliegue, se irá modificando para completar el objetivo del proyecto, los siguientes pasos serán el EDA para lograr entender mejor los datos y crear el algoritmo de recomendación. Render sólo usa la carpeta API para obtener un mejor rendimiento, siendo esta carpeta la que alberga todo lo necesario para la API, mientras que en el repositorio se encuentra lo necesario para correr el archivo localmente, por eso los requirements de API son distintos.
 
 3. **Análisis exploratorio de datos EDA**<br>
 En proceso...
@@ -64,7 +64,7 @@ En proceso...<br><br>
     - [Machine Learning](MachineLearning/) - Contiene el notebook de el [EDA]() y el de [Inteligencia artificial](), usados para crear los datos que usará el algoritmo de recomendación.
     - **Otros** - Archivos necesarios para git y github como este readme. Y archivo de pruebas automatizadas para la API [test.py](test.py).
 
-### Instrucciones de instalación y uso
+## Instrucciones de instalación y uso
 ![instalacion](assets/Instalar.png)<br><br>1. **Clona el repositorio:** Utiliza el comando:
 ```
 git clone https://github.com/Aeregon-Sharks/Steam-ML-Ops.git
@@ -77,11 +77,16 @@ pip install -r requirements.txt
 en el directorio principal en el que pusiste el proyecto, o en tu ambiente virtual.<br><br>
 3. **Ejecuta los notebook ETL:** Los notebook se encuentran en la carpeta [Notebooks](Notebooks/) , corre todas las celdas de los notebook que tengan en su nombre ETL, esto hará que empiece la limpieza de los sets de datos, que si no están en tu dispositivo, se deberían descargar automáticamente, si esto no ocurre y algún Notebook da un error, intenta descargarlos manualmente y ponerlos en la carpeta Data/, con el nombre referenciado en el notebook, por defecto los nombres serán: `steam_games.json.gz , user_reviews.json.gz y users_items.json.gz`. [Datos opcion 1](https://drive.google.com/drive/folders/1HqBG2-sUkz_R3h1dZU5F2uAzpRn7BSpj), [Datos opcion 2](https://drive.google.com/drive/u/0/folders/1dqsrIyq_ucgHjAgol6ajr5Zc8ZABdqIN) [Diccionario de los datos](https://docs.google.com/spreadsheets/d/1-t9HLzLHIGXvliq56UE_gMaWBVTPfrlTf2D9uAtLGrk/edit#gid=0).<br><br>
 4. **Ejecuta el notebook Queries:** En la misma carpeta, ejecuta todas las celdas del Notebook Queries, recuerda que para todos los notebooks, hay información en ellos sobre los criterios para cada decisión que modificó a los datos, no dudes en consultarme si algo falla y no se encuentra ninguna indicación en el notebook.<br><br>
-5. **Ejecuta el notebook de EDA:** En la carpeta Machine Learning se encuentra todo lo relacionado a la segunda parte del proyecto, ahí podrás ejecutar el cuaderno para visualizar el Análisis de Datos Exploratorio.
+5. **Ejecuta el notebook de EDA:** En la carpeta Machine Learning se encuentra todo lo relacionado a la segunda parte del proyecto, ahí podrás ejecutar el cuaderno para visualizar el Análisis de Datos Exploratorio.<br><br>
 6. **Ejecuta el notebook de Machine Learning** En la misma carpeta, ejecuta el notebook de MachineLearning.<br><br>
-7. **Ejecuta main.py:** Una vez se terminen de ejecutar todos los notebooks, ejecuta el archivo [main.py](Api/main.py) que se encuentra en la carpeta [Api](Api/) usando uvicorn, y ubicado desde la carpeta Api, no desde la raíz.
+7. **Ejecuta main.py:** Una vez se terminen de ejecutar todos los notebooks, ejecuta el archivo [main.py](Api/main.py) que se encuentra en la carpeta [Api](Api/) usando uvicorn.<br><br>
+Si estás ubicado en la raíz:
 ```
 uvicorn Api.main:app
 ```
+Si estás ubicado en la carpeta API:
+```
+uvicorn main:app
+```
 \
-8. **Pruebas:** Ejecuta pruebas a las solicitudes ya sea localmente con programas como postman, o usando el archivo [test.py](Api/test.py) ubicado en la misma carpeta de la API.
+8. **Pruebas:** Ejecuta pruebas a las solicitudes ya sea localmente con programas como postman, o usando el archivo [test.py](Api/test.py) ubicado en la misma carpeta de la API. Recuerda hacer pruebas a la dirección ip que te muestre Uvicorn en la consola, y modificar el archivo test.py con la dirección ip y las pruebas que necesites realizar.

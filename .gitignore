@@ -1,6 +1,3 @@
 venv/
 .vscode/
 Api/__pycache__/
-Data/user_reviews.json.gz
-Data/users_items.json.gz
-Data/steam_games.json.gz

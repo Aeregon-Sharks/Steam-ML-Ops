@@ -23,6 +23,9 @@ def sugerencia(text, opts):
     try:
         # Convertimos las opciones a string para que puedan ser tratadas o por si hay algún nan.
         opts = [str(e) for e in opts if e]
+        # Convertimos el texto de ser necesario.
+        if type(text) == int:
+            text = str(text)
         # Buscamos opciones similares.
         similar = get_close_matches(text, opts, n=4, cutoff=0.5)
         # Si hay, las retornamos, si no, retorna que no se pudo encontrar el texto.
@@ -240,3 +243,42 @@ def developer_reviews_analysis(dev: str):
     # Retornamos el diccionario con la llave siendo el desarrollador y los valores siendo las columnas negativa y positiva con su único registro.
     # Hago parse a los valores float e int respectivamente ya que en la API por algún motivo extraño intenta iterar en los np.int64.
     return {dev: {'Negative':int(df['neg'].iloc[0]), 'Positive':int(df['pos'].iloc[0])}}
+
+def recomendacion_juego(id: int):
+    '''
+    Recomendación item a item.
+
+    Retorna un diccionario con 5 recomendaciones de juegos en base al id del juego ingresado.
+
+    Requiere:
+    Pandas.
+    get_close_matches de difflib.
+    Set de datos previamente procesados para su uso en API. Consultar MachineLearning.ipynb
+
+    Recibe:
+    int: Id de un juego.
+
+    Retorna:
+    dict: Un diccionario con el nombre del juego ingresado. Junto a 5 recomendaciones.
+
+    Ejemplo de uso:
+    recomendacion_juego(id)
+    returns: { 'Nombre_juego': [ 'recomendacion 1', 'recomendacion 2', ..., 'recomendacion 5' ] }
+    '''
+    # Importamos los datos previamente procesados para esta tarea.
+    try: # Verificamos que la ubicación desde la que se ejecutó sea la correcta, si no, usamos la del directorio raíz.
+        df = pd.read_csv('ApiData/recommend_item_to_item.csv')
+    except FileNotFoundError:
+        df = pd.read_csv('Api/ApiData/recommend_item_to_item.csv')
+    # Extraemos los IDS únicos.
+    ids = df['id'].unique()
+    # Si no se encuentra el id en los ids, retornamos una sugerencia de búsqueda con IDS similares.
+    if not (id in ids):
+        return sugerencia(id, ids)
+    # Si no se detuvo el programa con una sugerencia, es porque hay un ID válido en los datos, lo buscamos.
+    df = df[df['id'] == id]
+    # Creamos la llave de nuestro diccionario con el nombre del juego.
+    llave = 'Recomendaciones para '
+    llave += df['name'].iloc[0]
+    # Retornamos el diccionario con los valores de recommend.
+    return {llave: df['recommend'].iloc[0]}
