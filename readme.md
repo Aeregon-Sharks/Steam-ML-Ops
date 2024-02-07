@@ -6,6 +6,7 @@
 Bienvenidos a mi proyecto de Machine Learning Operations, mi nombre es Juan Camilo Acevedo y me encantó realizar cada parte de él y aprender mucho en el proceso, este es mi primer proyecto haciendo lo que más me gusta, con datos de una de mis actividades favoritas. Gracias por tu interés y tomarte tu tiempo en explorarlo. Documenté cada parte para que sea sencillo entender lo que se realiza en él.
 - Enlace API: https://juan-acevedo-ml-ops.onrender.com
 - Enlace API Con interfaz Gráfica : [API_GUI](https://juan-acevedo-ml-ops.onrender.com/docs)
+- Enlace Video: [Video Presentación](https://youtu.be/t2Fmx3V4p8k)
 
 ## Indice
 [Descripción](#descripción) - [Objetivo](#objetivo) - [Tareas desarrolladas](#tareas-desarrolladas) - [Estructura del proyecto](#estructura-del-proyecto) - [Instrucciones de instalación y uso](#instrucciones-de-instalación-y-uso) 
